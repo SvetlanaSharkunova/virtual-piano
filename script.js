@@ -5,8 +5,8 @@ const audio = document.querySelector(".audio");
 const btnContainer = document.querySelector('.btn-container');
 const btns = document.querySelectorAll(".btn");
 
-const notesBtn = document.querySelector(".btn-notes");
-const lettersBtn = document.querySelector(".btn-letters");
+const btnNotes = document.querySelector(".btn-notes");
+const btnLetters = document.querySelector(".btn-letters");
 
 
 
@@ -31,4 +31,37 @@ btnContainer.addEventListener("click", function(e) {
     });
   }
 
+});
+
+/*======== audio function  ========*/ 
+
+function playAudio(note) {
+  const url = `assets/audio/${note}.mp3`;  
+  audio.src = url;
+  audio.currentTime = 0;
+  audio.play();
+}
+
+/*========  pianoKeys + audio ========*/
+
+piano.addEventListener("mousedown", function(e) {
+
+  pianoKeys.forEach(function(pianoKey) {
+    if (pianoKey.classList.contains("piano-key-active")) {
+      pianoKey.classList.remove("piano-key-active");
+    }
+  });
+
+  if (e.target.classList.contains("piano-key")) {
+    e.target.classList.add("piano-key-active");
+    const dataNote = e.target.dataset.note;    
+    playAudio(dataNote);
+  }
+});
+
+
+piano.addEventListener("mouseup", function(e){
+  if (e.target.classList.contains("piano-key-active")) {
+    e.target.classList.remove("piano-key-active");
+  }
 });
