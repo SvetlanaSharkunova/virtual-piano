@@ -8,7 +8,7 @@ const btns = document.querySelectorAll(".btn");
 const btnNotes = document.querySelector(".btn-notes");
 const btnLetters = document.querySelector(".btn-letters");
 
-
+const buttonfullScreen = document.querySelector('.fullscreen');
 
 /*========  btns Letters/Notes ========*/
 
@@ -95,3 +95,18 @@ piano.addEventListener("mouseup", function(e){
     e.target.classList.remove("piano-key-active");
   }
 });
+
+
+/*---FULLSCREEN---*/
+
+buttonfullScreen.addEventListener('click', function() {
+  
+  if (document.fullscreenElement === null) {
+     document.documentElement.requestFullscreen();
+  } else {
+     if (document.fullscreenEnabled) {
+        document.exitFullscreen();
+     }
+  }
+});
+
