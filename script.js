@@ -35,9 +35,9 @@ btnContainer.addEventListener("click", function(e) {
 
 /*======== audio function  ========*/ 
 
-function playAudio(note) {
-  const url = `assets/audio/${note}.mp3`;  
-  audio.src = url;
+function playAudio(src) {
+  const audio = new Audio();  
+  audio.src = src;
   audio.currentTime = 0;
   audio.play();
 }
@@ -54,8 +54,9 @@ piano.addEventListener("mousedown", function(e) {
 
   if (e.target.classList.contains("piano-key")) {
     e.target.classList.add("piano-key-active");
-    const dataNote = e.target.dataset.note;    
-    playAudio(dataNote);
+    const note = e.target.dataset.note;
+    const url = `assets/audio/${note}.mp3`;
+    playAudio(url);
   }
 });
 
