@@ -42,6 +42,35 @@ function playAudio(src) {
   audio.play();
 }
 
+/*========  Keyboard + audio ========*/
+
+window.addEventListener("keydown", function(event) {
+  
+  pianoKeys.forEach(function(pianokey) {
+    const keyLetter = "Key" + pianokey.dataset.letter;
+    
+    if (keyLetter === event.code) {
+
+      const note = pianokey.dataset.note;
+      const url = `assets/audio/${note}.mp3`;
+      pianokey.classList.add("piano-key-active");
+      playAudio(url);
+      
+    }
+   
+  });
+});
+
+window.addEventListener("keyup", function(event) {
+
+  pianoKeys.forEach(function(pianoKey) {
+    if (pianoKey.classList.contains("piano-key-active")) {
+      pianoKey.classList.remove("piano-key-active");
+    }
+  });
+
+});
+
 /*========  pianoKeys + audio ========*/
 
 piano.addEventListener("mousedown", function(e) {
